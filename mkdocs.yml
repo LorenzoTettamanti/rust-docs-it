@@ -1,0 +1,114 @@
+site_name: Rust Docs Italia
+site_url: https://rust-ita.github.io/
+site_description: Documentazione ufficiale di Rust tradotta in italiano
+site_author: Andrea Bozzo & Lorenzo Tettamanti
+
+repo_name: rust-ita/rust-docs-it
+repo_url: https://github.com/rust-ita/rust-docs-it
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  language: it
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      primary: deep orange
+      accent: orange
+      toggle:
+        icon: material/brightness-7
+        name: Passa al tema scuro
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: deep orange
+      accent: orange
+      toggle:
+        icon: material/brightness-4
+        name: Passa al tema chiaro
+  font:
+    text: Roboto
+    code: Roboto Mono
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - toc.follow
+
+plugins:
+  - search:
+      lang: it
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: date
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/rust-ita
+    - icon: fontawesome/brands/rust
+      link: https://www.rust-lang.org/
+  version:
+    provider: mike
+  alternate:
+    - name: Italiano
+      link: /
+      lang: it
+    - name: English (Original)
+      link: https://doc.rust-lang.org/
+      lang: en
+
+copyright: |
+  &copy; 2025 Rust Italia Community - Traduzione italiana della documentazione Rust<br>
+  Documentazione originale &copy; The Rust Project Developers
+
+nav:
+  - Home: index.md
+  - Standard Library:
+    - std/index.md
+    - Tipi Primitivi: std/primitives.md
+    - Collections:
+      - std/collections/index.md
+      - Vec: std/collections/vec.md
+      - HashMap: std/collections/hashmap.md
+      - HashSet: std/collections/hashset.md
+    - I/O: std/io/index.md
+    - File System: std/fs/index.md
+    - Stringhe: std/string/index.md
+    - Option e Result: std/option-result.md
+  - The Rust Book:
+    - book/index.md
+    - Introduzione: book/ch00-introduction.md
+    - Per Iniziare: book/ch01-getting-started.md
+  - Guida al Contributo: CONTRIBUTING.md
+  - Glossario: GLOSSARY.md
