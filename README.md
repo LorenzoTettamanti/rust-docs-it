@@ -3,7 +3,7 @@
 [![Build Status](https://github.com/rust-ita/rust-docs-it/workflows/ci/badge.svg)](https://github.com/rust-ita/rust-docs-it/actions)
 [![License: MIT/Apache-2.0](https://img.shields.io/badge/license-MIT%2FApache--2.0-blue.svg)](LICENSE)
 
-Traduzione italiana della documentazione ufficiale di Rust.
+Traduzione italiana della documentazione ufficiale di Rust..
 
 📖 **[Leggi la documentazione](https://rust-ita.github.io/)** (quando pubblicata)
 
