@@ -1,0 +1,2261 @@
+
+<!doctype html>
+<html lang="it" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentazione ufficiale di Rust tradotta in italiano">
+      
+      
+        <meta name="author" content="Andrea Bozzo & Lorenzo Tettamanti">
+      
+      
+        <link rel="canonical" href="https://rust-ita.github.io/CONTRIBUTING/">
+      
+      
+        <link rel="prev" href="../std/collections/vec/">
+      
+      
+        <link rel="next" href="../GLOSSARY/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Guida al Contributo - Rust Docs Italia</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#guida-al-contributo" class="md-skip">
+          Vai al contenuto
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Intestazione">
+    <a href=".." title="Rust Docs Italia" class="md-header__button md-logo" aria-label="Rust Docs Italia" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Rust Docs Italia
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Guida al Contributo
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="orange"  aria-label="Passa al tema scuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passa al tema scuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="orange"  aria-label="Passa al tema chiaro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passa al tema chiaro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Seleziona la lingua">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="/" hreflang="it" class="md-select__link">
+              Italiano
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="https://doc.rust-lang.org/" hreflang="en" class="md-select__link">
+              English (Original)
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Cerca" placeholder="Cerca" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Cerca">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Cancella" aria-label="Cancella" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inizializza la ricerca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/rust-ita/rust-docs-it" title="Apri repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    rust-ita/rust-docs-it
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../std/index.md" class="md-tabs__link">
+          
+  
+  
+  Standard Library
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../book/index.md" class="md-tabs__link">
+          
+  
+  
+  The Rust Book
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guida al Contributo
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../GLOSSARY/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Glossario
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigazione" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Rust Docs Italia" class="md-nav__button md-logo" aria-label="Rust Docs Italia" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Rust Docs Italia
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/rust-ita/rust-docs-it" title="Apri repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    rust-ita/rust-docs-it
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Standard Library
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Standard Library
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../std/index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    None
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../std/primitives.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tipi Primitivi
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Collections
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Collections
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../std/collections/index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    None
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../std/collections/vec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Vec
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../std/collections/hashmap.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HashMap
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../std/collections/hashset.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HashSet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../std/io/index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    I/O
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../std/fs/index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    File System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../std/string/index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Stringhe
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../std/option-result.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Option e Result
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    The Rust Book
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            The Rust Book
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../book/index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    None
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../book/ch00-introduction.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduzione
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../book/ch01-getting-started.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Per Iniziare
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Guida al Contributo
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Guida al Contributo
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Indice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Indice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#indice" class="md-nav__link">
+    <span class="md-ellipsis">
+      Indice
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#come-iniziare" class="md-nav__link">
+    <span class="md-ellipsis">
+      Come iniziare
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Come iniziare">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisiti" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisiti
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup-locale" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup locale
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#processo-di-traduzione" class="md-nav__link">
+    <span class="md-ellipsis">
+      Processo di traduzione
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Processo di traduzione">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-scegli-una-sezione-da-tradurre" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Scegli una sezione da tradurre
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-crea-una-issue-se-non-esiste" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Crea una issue (se non esiste)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-traduci-la-sezione" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Traduci la sezione
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-verifica-la-traduzione" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Verifica la traduzione
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linee-guida-stilistiche" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linee guida stilistiche
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Linee guida stilistiche">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tono-e-registro" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tono e registro
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#formattazione" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formattazione
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Formattazione">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enfasi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enfasi
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blocchi-di-codice" class="md-nav__link">
+    <span class="md-ellipsis">
+      Blocchi di codice
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#note-e-avvisi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Note e avvisi
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#traduzione-vs-adattamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Traduzione vs Adattamento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Traduzione vs Adattamento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cosa-tradurre" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cosa tradurre
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cosa-non-tradurre" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cosa NON tradurre
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#esempi-pratici" class="md-nav__link">
+    <span class="md-ellipsis">
+      Esempi pratici
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflow-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      Workflow Git
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Workflow Git">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#branching-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Branching strategy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commit-messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commit messages
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pull-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pull Request
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pull Request">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#template-pr" class="md-nav__link">
+    <span class="md-ellipsis">
+      Template PR
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#revisione-delle-traduzioni" class="md-nav__link">
+    <span class="md-ellipsis">
+      Revisione delle traduzioni
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Revisione delle traduzioni">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#per-i-revisori" class="md-nav__link">
+    <span class="md-ellipsis">
+      Per i revisori
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#come-lasciare-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      Come lasciare feedback
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#priorita-di-traduzione" class="md-nav__link">
+    <span class="md-ellipsis">
+      Priorità di traduzione
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Priorità di traduzione">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alta-priorita" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alta priorità 🔴
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#media-priorita" class="md-nav__link">
+    <span class="md-ellipsis">
+      Media priorità 🟡
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bassa-priorita" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bassa priorità 🟢
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#domande-frequenti" class="md-nav__link">
+    <span class="md-ellipsis">
+      Domande frequenti
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Domande frequenti">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#posso-tradurre-piu-sezioni-contemporaneamente" class="md-nav__link">
+    <span class="md-ellipsis">
+      Posso tradurre più sezioni contemporaneamente?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quanto-tempo-dovrebbe-richiedere-una-traduzione" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quanto tempo dovrebbe richiedere una traduzione?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cosa-faccio-se-non-sono-sicuro-di-una-traduzione" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cosa faccio se non sono sicuro di una traduzione?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#posso-proporre-modifiche-al-glossario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Posso proporre modifiche al glossario?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#risorse-utili" class="md-nav__link">
+    <span class="md-ellipsis">
+      Risorse utili
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contatti" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contatti
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GLOSSARY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Glossario
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Indice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Indice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#indice" class="md-nav__link">
+    <span class="md-ellipsis">
+      Indice
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#come-iniziare" class="md-nav__link">
+    <span class="md-ellipsis">
+      Come iniziare
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Come iniziare">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisiti" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisiti
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup-locale" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup locale
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#processo-di-traduzione" class="md-nav__link">
+    <span class="md-ellipsis">
+      Processo di traduzione
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Processo di traduzione">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-scegli-una-sezione-da-tradurre" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Scegli una sezione da tradurre
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-crea-una-issue-se-non-esiste" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Crea una issue (se non esiste)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-traduci-la-sezione" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Traduci la sezione
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-verifica-la-traduzione" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Verifica la traduzione
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linee-guida-stilistiche" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linee guida stilistiche
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Linee guida stilistiche">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tono-e-registro" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tono e registro
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#formattazione" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formattazione
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Formattazione">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enfasi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enfasi
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blocchi-di-codice" class="md-nav__link">
+    <span class="md-ellipsis">
+      Blocchi di codice
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#note-e-avvisi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Note e avvisi
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#traduzione-vs-adattamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Traduzione vs Adattamento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Traduzione vs Adattamento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cosa-tradurre" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cosa tradurre
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cosa-non-tradurre" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cosa NON tradurre
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#esempi-pratici" class="md-nav__link">
+    <span class="md-ellipsis">
+      Esempi pratici
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflow-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      Workflow Git
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Workflow Git">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#branching-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Branching strategy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commit-messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commit messages
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pull-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pull Request
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pull Request">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#template-pr" class="md-nav__link">
+    <span class="md-ellipsis">
+      Template PR
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#revisione-delle-traduzioni" class="md-nav__link">
+    <span class="md-ellipsis">
+      Revisione delle traduzioni
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Revisione delle traduzioni">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#per-i-revisori" class="md-nav__link">
+    <span class="md-ellipsis">
+      Per i revisori
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#come-lasciare-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      Come lasciare feedback
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#priorita-di-traduzione" class="md-nav__link">
+    <span class="md-ellipsis">
+      Priorità di traduzione
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Priorità di traduzione">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alta-priorita" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alta priorità 🔴
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#media-priorita" class="md-nav__link">
+    <span class="md-ellipsis">
+      Media priorità 🟡
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bassa-priorita" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bassa priorità 🟢
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#domande-frequenti" class="md-nav__link">
+    <span class="md-ellipsis">
+      Domande frequenti
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Domande frequenti">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#posso-tradurre-piu-sezioni-contemporaneamente" class="md-nav__link">
+    <span class="md-ellipsis">
+      Posso tradurre più sezioni contemporaneamente?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quanto-tempo-dovrebbe-richiedere-una-traduzione" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quanto tempo dovrebbe richiedere una traduzione?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cosa-faccio-se-non-sono-sicuro-di-una-traduzione" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cosa faccio se non sono sicuro di una traduzione?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#posso-proporre-modifiche-al-glossario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Posso proporre modifiche al glossario?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#risorse-utili" class="md-nav__link">
+    <span class="md-ellipsis">
+      Risorse utili
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contatti" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contatti
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="guida-al-contributo">Guida al Contributo<a class="headerlink" href="#guida-al-contributo" title="Permanent link">&para;</a></h1>
+<p>Grazie per il tuo interesse nel contribuire alla traduzione italiana della documentazione di Rust! 🦀</p>
+<h2 id="indice">Indice<a class="headerlink" href="#indice" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#come-iniziare">Come iniziare</a></li>
+<li><a href="#processo-di-traduzione">Processo di traduzione</a></li>
+<li><a href="#linee-guida-stilistiche">Linee guida stilistiche</a></li>
+<li><a href="#workflow-git">Workflow Git</a></li>
+<li><a href="#revisione-delle-traduzioni">Revisione delle traduzioni</a></li>
+</ol>
+<hr />
+<h2 id="come-iniziare">Come iniziare<a class="headerlink" href="#come-iniziare" title="Permanent link">&para;</a></h2>
+<h3 id="prerequisiti">Prerequisiti<a class="headerlink" href="#prerequisiti" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Conoscenza di Rust (almeno livello intermedio)</li>
+<li>Buona padronanza dell'italiano scritto</li>
+<li>Familiarità con Git e GitHub</li>
+<li>(Opzionale) Esperienza con MkDocs</li>
+</ul>
+<h3 id="setup-locale">Setup locale<a class="headerlink" href="#setup-locale" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Clona il repository</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/rust-ita/rust-docs-it.git
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">cd</span><span class="w"> </span>rust-docs-it
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># Crea un ambiente virtuale Python</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate<span class="w">  </span><span class="c1"># Su Windows: venv\Scripts\activate</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c1"># Installa le dipendenze</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="c1"># Avvia il server locale</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>mkdocs<span class="w"> </span>serve
+</span></code></pre></div>
+<p>Ora puoi visitare <code>http://127.0.0.1:8000</code> per vedere la documentazione in locale.</p>
+<hr />
+<h2 id="processo-di-traduzione">Processo di traduzione<a class="headerlink" href="#processo-di-traduzione" title="Permanent link">&para;</a></h2>
+<h3 id="1-scegli-una-sezione-da-tradurre">1. Scegli una sezione da tradurre<a class="headerlink" href="#1-scegli-una-sezione-da-tradurre" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Controlla le <a href="https://github.com/rust-ita/rust-docs-it/issues">issue aperte</a> con label <code>traduzione</code></li>
+<li>Cerca sezioni non ancora assegnate</li>
+<li>Commenta l'issue per farti assegnare la sezione</li>
+</ul>
+<h3 id="2-crea-una-issue-se-non-esiste">2. Crea una issue (se non esiste)<a class="headerlink" href="#2-crea-una-issue-se-non-esiste" title="Permanent link">&para;</a></h3>
+<p>Se vuoi tradurre una sezione non ancora tracciata:</p>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gs">**Titolo**</span>: Traduzione: [Nome sezione]
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="gs">**Descrizione**</span>:
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">-</span><span class="w"> </span>Link alla documentazione originale: [URL]
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">-</span><span class="w"> </span>Stima pagine/parole: ~X pagine
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">-</span><span class="w"> </span>Priorità: Alta/Media/Bassa
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>Mi piacerebbe occuparmi di questa traduzione.
+</span></code></pre></div>
+<h3 id="3-traduci-la-sezione">3. Traduci la sezione<a class="headerlink" href="#3-traduci-la-sezione" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Usa il <a href="../TEMPLATE/">TEMPLATE.md</a> come base</li>
+<li>Consulta il <a href="../GLOSSARY/">GLOSSARY.md</a> per la terminologia</li>
+<li>Mantieni la struttura della documentazione originale</li>
+<li>Gli esempi di codice restano in inglese</li>
+</ul>
+<h3 id="4-verifica-la-traduzione">4. Verifica la traduzione<a class="headerlink" href="#4-verifica-la-traduzione" title="Permanent link">&para;</a></h3>
+<p>Prima di aprire una PR, controlla:</p>
+<ul>
+<li>[ ] Terminologia coerente con il glossario</li>
+<li>[ ] Link funzionanti</li>
+<li>[ ] Formattazione markdown corretta</li>
+<li>[ ] Codice di esempio testato (se modificato)</li>
+<li>[ ] Nessun errore di battitura</li>
+<li>[ ] Preview locale con <code>mkdocs serve</code></li>
+</ul>
+<hr />
+<h2 id="linee-guida-stilistiche">Linee guida stilistiche<a class="headerlink" href="#linee-guida-stilistiche" title="Permanent link">&para;</a></h2>
+<h3 id="tono-e-registro">Tono e registro<a class="headerlink" href="#tono-e-registro" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Registro informale-professionale</strong>: usa il "tu" diretto</li>
+<li><strong>Tono amichevole ma tecnico</strong>: la documentazione deve essere accessibile ma precisa</li>
+<li><strong>Esempi</strong>: "Puoi usare..." invece di "Si può usare..."</li>
+</ul>
+<h3 id="formattazione">Formattazione<a class="headerlink" href="#formattazione" title="Permanent link">&para;</a></h3>
+<h4 id="enfasi">Enfasi<a class="headerlink" href="#enfasi" title="Permanent link">&para;</a></h4>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">-</span><span class="w"> </span><span class="gs">**Grassetto**</span> per termini tecnici importanti alla prima occorrenza
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">-</span><span class="w"> </span><span class="ge">*Corsivo*</span> per enfasi leggera
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">-</span><span class="w"> </span><span class="sb">`Codice inline`</span> per keyword, tipi, nomi di funzioni
+</span></code></pre></div>
+<h4 id="blocchi-di-codice">Blocchi di codice<a class="headerlink" href="#blocchi-di-codice" title="Permanent link">&para;</a></h4>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>\`\`\`rust
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>// Commenti in inglese per coerenza
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>fn example() {
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    println!(&quot;Codice in inglese&quot;);
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>}
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>\`\`\`
+</span></code></pre></div>
+<h4 id="note-e-avvisi">Note e avvisi<a class="headerlink" href="#note-e-avvisi" title="Permanent link">&para;</a></h4>
+<p>Usa gli admonition di MkDocs:</p>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>!!! note &quot;Nota&quot;
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    Informazioni aggiuntive
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>!!! tip &quot;Suggerimento&quot;
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    Consigli pratici
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>!!! warning &quot;Attenzione&quot;
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    Avvertimenti importanti
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>!!! danger &quot;Pericolo&quot;
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    Operazioni rischiose (unsafe, comportamenti indefiniti)
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>!!! info &quot;Info&quot;
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>    Riferimenti e link utili
+</span></code></pre></div>
+<h3 id="traduzione-vs-adattamento">Traduzione vs Adattamento<a class="headerlink" href="#traduzione-vs-adattamento" title="Permanent link">&para;</a></h3>
+<h4 id="cosa-tradurre">Cosa tradurre<a class="headerlink" href="#cosa-tradurre" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Testo esplicativo</li>
+<li>Intestazioni e titoli</li>
+<li>Commenti nella documentazione</li>
+<li>Messaggi d'errore (nei testi esplicativi)</li>
+</ul>
+<h4 id="cosa-non-tradurre">Cosa NON tradurre<a class="headerlink" href="#cosa-non-tradurre" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Codice Rust (keyword, identificatori, commenti negli esempi)</li>
+<li>Nomi di tipi standard (<code>String</code>, <code>Vec</code>, <code>Option</code>, etc.)</li>
+<li>Nomi di trait (<code>Debug</code>, <code>Clone</code>, <code>Iterator</code>, etc.)</li>
+<li>URL e link</li>
+<li>Termini tecnici consolidati (vedi glossario)</li>
+</ul>
+<h3 id="esempi-pratici">Esempi pratici<a class="headerlink" href="#esempi-pratici" title="Permanent link">&para;</a></h3>
+<p><strong>❌ Non fare così:</strong></p>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Il Vec è una collezione dinamica.
+</span></code></pre></div>
+<p><strong>✅ Fai così:</strong></p>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Il <span class="gs">**Vec**</span> è una collezione dinamica che può crescere o ridursi durante l&#39;esecuzione.
+</span></code></pre></div>
+<hr />
+<p><strong>❌ Non fare così:</strong></p>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Quando fai il borrow di una variabile...
+</span></code></pre></div>
+<p><strong>✅ Fai così:</strong></p>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Quando prendi in prestito (borrow) una variabile...
+</span></code></pre></div>
+<hr />
+<h2 id="workflow-git">Workflow Git<a class="headerlink" href="#workflow-git" title="Permanent link">&para;</a></h2>
+<h3 id="branching-strategy">Branching strategy<a class="headerlink" href="#branching-strategy" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Crea un branch per la tua traduzione</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>traduzione/std-vec
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># Naming convention:</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="c1"># - traduzione/[sezione]  → per nuove traduzioni</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="c1"># - fix/[sezione]         → per correzioni</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1"># - aggiornamento/[sezione] → per aggiornamenti</span>
+</span></code></pre></div>
+<h3 id="commit-messages">Commit messages<a class="headerlink" href="#commit-messages" title="Permanent link">&para;</a></h3>
+<p>Usa commit messages chiari in italiano:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># ✅ Buoni esempi</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Traduce sezione Vec della standard library&quot;</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Corregge terminologia in Option e Result&quot;</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Aggiorna esempi nella sezione borrowing&quot;</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="c1"># ❌ Esempi da evitare</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;fix&quot;</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;update&quot;</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;wip&quot;</span>
+</span></code></pre></div>
+<h3 id="pull-request">Pull Request<a class="headerlink" href="#pull-request" title="Permanent link">&para;</a></h3>
+<h4 id="template-pr">Template PR<a class="headerlink" href="#template-pr" title="Permanent link">&para;</a></h4>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="gu">## Descrizione</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>Traduzione della sezione [nome] della documentazione Rust.
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="gu">## Checklist</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="k">- [ ]</span> Ho consultato il glossario per la terminologia
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="k">- [ ]</span> Ho testato la build locale con <span class="sb">`mkdocs serve`</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="k">- [ ]</span> Ho verificato tutti i link
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="k">- [ ]</span> Ho seguito le linee guida stilistiche
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="k">- [ ]</span> Gli esempi di codice sono in inglese
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="k">- [ ]</span> Ho aggiunto il link alla documentazione originale
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="gu">## Link</span>
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="k">-</span><span class="w"> </span>Documentazione originale: [URL]
+</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="k">-</span><span class="w"> </span>Issue correlata: #[numero]
+</span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>
+</span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="gu">## Note</span>
+</span><span id="__span-11-20"><a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>
+</span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>[Eventuali note per i revisori]
+</span></code></pre></div>
+<hr />
+<h2 id="revisione-delle-traduzioni">Revisione delle traduzioni<a class="headerlink" href="#revisione-delle-traduzioni" title="Permanent link">&para;</a></h2>
+<h3 id="per-i-revisori">Per i revisori<a class="headerlink" href="#per-i-revisori" title="Permanent link">&para;</a></h3>
+<p>Quando revisioni una PR, controlla:</p>
+<ol>
+<li><strong>Accuratezza tecnica</strong></li>
+<li>La traduzione è fedele all'originale?</li>
+<li>
+<p>I concetti tecnici sono corretti?</p>
+</li>
+<li>
+<p><strong>Terminologia</strong></p>
+</li>
+<li>Segue il glossario?</li>
+<li>
+<p>È coerente con altre traduzioni?</p>
+</li>
+<li>
+<p><strong>Leggibilità</strong></p>
+</li>
+<li>Il testo è fluido in italiano?</li>
+<li>
+<p>È comprensibile per il pubblico target?</p>
+</li>
+<li>
+<p><strong>Formattazione</strong></p>
+</li>
+<li>Markdown corretto?</li>
+<li>Link funzionanti?</li>
+<li>Preview senza errori?</li>
+</ol>
+<h3 id="come-lasciare-feedback">Come lasciare feedback<a class="headerlink" href="#come-lasciare-feedback" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Sii costruttivo e rispettoso</li>
+<li>Suggerisci alternative concrete</li>
+<li>Spiega il motivo delle tue osservazioni</li>
+<li>Approva quando soddisfatto</li>
+</ul>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="gh"># ✅ Feedback costruttivo</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>&quot;Qui suggerirei &#39;prendere in prestito&#39; invece di &#39;borroware&#39; 
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>per essere più coerenti con il glossario. Vedi GLOSSARY.md.&quot;
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="gh"># ❌ Feedback poco utile</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>&quot;Questo non va bene.&quot;
+</span></code></pre></div>
+<hr />
+<h2 id="priorita-di-traduzione">Priorità di traduzione<a class="headerlink" href="#priorita-di-traduzione" title="Permanent link">&para;</a></h2>
+<p>Stiamo dando priorità alle sezioni più utilizzate:</p>
+<h3 id="alta-priorita">Alta priorità 🔴<a class="headerlink" href="#alta-priorita" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] Standard Library - Tipi primitivi</li>
+<li>[ ] Standard Library - String e &amp;str</li>
+<li>[ ] Standard Library - Vec</li>
+<li>[ ] Standard Library - Option e Result</li>
+<li>[ ] Standard Library - HashMap</li>
+<li>[ ] The Rust Book - Capitoli 1-10</li>
+</ul>
+<h3 id="media-priorita">Media priorità 🟡<a class="headerlink" href="#media-priorita" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] Standard Library - Iterator</li>
+<li>[ ] Standard Library - Collections avanzate</li>
+<li>[ ] The Rust Book - Capitoli 11-20</li>
+<li>[ ] Error handling patterns</li>
+</ul>
+<h3 id="bassa-priorita">Bassa priorità 🟢<a class="headerlink" href="#bassa-priorita" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] Sezioni avanzate e specialistiche</li>
+<li>[ ] Unsafe Rust</li>
+<li>[ ] Macro avanzate</li>
+</ul>
+<hr />
+<h2 id="domande-frequenti">Domande frequenti<a class="headerlink" href="#domande-frequenti" title="Permanent link">&para;</a></h2>
+<h3 id="posso-tradurre-piu-sezioni-contemporaneamente">Posso tradurre più sezioni contemporaneamente?<a class="headerlink" href="#posso-tradurre-piu-sezioni-contemporaneamente" title="Permanent link">&para;</a></h3>
+<p>È meglio concentrarsi su una sezione alla volta per mantenere alta la qualità e velocizzare le review.</p>
+<h3 id="quanto-tempo-dovrebbe-richiedere-una-traduzione">Quanto tempo dovrebbe richiedere una traduzione?<a class="headerlink" href="#quanto-tempo-dovrebbe-richiedere-una-traduzione" title="Permanent link">&para;</a></h3>
+<p>Dipende dalla lunghezza, ma in media:
+- Pagina piccola: 1-2 ore
+- Pagina media: 3-5 ore
+- Pagina grande: 1-2 giorni</p>
+<h3 id="cosa-faccio-se-non-sono-sicuro-di-una-traduzione">Cosa faccio se non sono sicuro di una traduzione?<a class="headerlink" href="#cosa-faccio-se-non-sono-sicuro-di-una-traduzione" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Consulta il glossario</li>
+<li>Cerca nella documentazione già tradotta</li>
+<li>Chiedi nel canale Discord/Telegram della community</li>
+<li>Apri una discussion su GitHub</li>
+</ol>
+<h3 id="posso-proporre-modifiche-al-glossario">Posso proporre modifiche al glossario?<a class="headerlink" href="#posso-proporre-modifiche-al-glossario" title="Permanent link">&para;</a></h3>
+<p>Assolutamente sì! Apri una issue con label <code>glossario</code> e discutiamone insieme.</p>
+<hr />
+<h2 id="risorse-utili">Risorse utili<a class="headerlink" href="#risorse-utili" title="Permanent link">&para;</a></h2>
+<ul>
+<li>📖 <a href="https://doc.rust-lang.org/">Documentazione Rust originale</a></li>
+<li>📝 <a href="../GLOSSARY/">Glossario termini</a></li>
+<li>🎨 <a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a></li>
+<li>🦀 <a href="https://github.com/rust-ita">Rust Italia Community</a></li>
+</ul>
+<hr />
+<h2 id="contatti">Contatti<a class="headerlink" href="#contatti" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>GitHub Issues</strong>: per domande specifiche sul progetto</li>
+<li><strong>Discussioni</strong>: per proposte e discussioni generali</li>
+</ul>
+<p>Grazie per il tuo contributo! 🚀</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Ultimo aggiornamento">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="22 ottobre 2025 13:31:35 UTC">22 ottobre 2025</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Creata">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="22 ottobre 2025 13:31:35 UTC">22 ottobre 2025</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Torna su
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Piede" >
+        
+          
+          <a href="../std/collections/vec/" class="md-footer__link md-footer__link--prev" aria-label="Precedente: Vec">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Precedente
+              </span>
+              <div class="md-ellipsis">
+                Vec
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../GLOSSARY/" class="md-footer__link md-footer__link--next" aria-label="Successivo: Glossario">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Successivo
+              </span>
+              <div class="md-ellipsis">
+                Glossario
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2025 Rust Italia Community - Traduzione italiana della documentazione Rust<br>
+Documentazione originale &copy; The Rust Project Developers
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/rust-ita" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.rust-lang.org/" target="_blank" rel="noopener" title="www.rust-lang.org" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="m508.5 249.8-21.8-13.5c-.2-2-.3-3.9-.5-5.9l18.7-17.5c.9-.9 1.6-1.9 2-3.1s.5-2.5.2-3.7-.8-2.4-1.6-3.3-1.8-1.7-3-2.1l-24-9c-.5-1.9-1.1-3.8-1.7-5.6l15-20.8c.7-1 1.2-2.2 1.3-3.4s0-2.5-.5-3.7-1.2-2.2-2.2-2.9-2.1-1.3-3.4-1.5l-25.4-4.2c-.9-1.7-1.8-3.4-2.7-5.2l10.7-23.4c.5-1.1.7-2.4.6-3.6s-.5-2.4-1.2-3.5-1.6-1.9-2.8-2.5-2.4-.8-3.6-.8l-25.8.9c-1.2-1.5-2.4-2.9-3.6-4.4l5.8-25.3c.3-1.2.3-2.5-.1-3.7s-1-2.3-1.9-3.2-2-1.5-3.2-1.9-2.5-.4-3.7-.1l-25.1 6c-1.4-1.2-2.9-2.4-4.4-3.6l.9-25.8c.1-1.3-.2-2.5-.8-3.6s-1.4-2.1-2.5-2.8-2.2-1.1-3.5-1.2-2.5.1-3.7.6l-23.3 10.7-5.1-2.7-4.2-25.4c-.2-1.2-.7-2.4-1.5-3.4s-1.8-1.7-2.9-2.2-2.4-.7-3.7-.5-2.4.6-3.4 1.3l-20.9 15c-1.9-.6-3.8-1.1-5.6-1.7l-9-24c-.4-1.2-1.2-2.2-2.1-3S307.2 5.2 306 5s-2.5-.2-3.7.2-2.3 1.1-3.1 2l-17.6 18.7c-2-.2-3.9-.4-5.9-.5L262.3 3.5c-.7-1.1-1.6-1.9-2.7-2.6S257.3 0 256 0s-2.5.3-3.6.9-2 1.5-2.7 2.6l-13.5 21.8c-2 .2-3.9.3-5.9.6L212.9 7.1c-.9-.9-1.9-1.6-3.1-2s-2.5-.5-3.7-.2-2.4.8-3.3 1.6-1.7 1.8-2.1 3l-9 24c-1.9.6-3.8 1.1-5.7 1.7l-20.8-15c-1-.7-2.2-1.2-3.4-1.3s-2.5 0-3.7.5-2.2 1.2-2.9 2.2-1.3 2.1-1.5 3.4l-4.2 25.4c-1.7.9-3.4 1.8-5.2 2.7l-23.4-10.5c-1.1-.5-2.4-.7-3.7-.6s-2.5.5-3.5 1.2-1.9 1.7-2.5 2.8-.8 2.4-.8 3.6l.9 25.8c-1.5 1.2-3 2.4-4.4 3.6l-25.1-6c-1.2-.3-2.5-.3-3.7.1s-2.3 1-3.2 1.9-1.5 2-1.9 3.2-.4 2.5-.1 3.7l6 25.1c-1.2 1.4-2.4 2.9-3.6 4.4l-25.8-.9c-1.3 0-2.5.2-3.6.8s-2.1 1.4-2.8 2.4-1.1 2.2-1.2 3.5.1 2.5.6 3.6l10.7 23.4c-.9 1.7-1.8 3.4-2.7 5.2l-25.4 4.1c-1.2.2-2.4.7-3.4 1.5s-1.7 1.8-2.2 2.9-.7 2.4-.5 3.7.6 2.4 1.3 3.4l15 20.8c-.6 1.9-1.1 3.8-1.7 5.7l-24 9c-1.2.4-2.2 1.2-3 2.1s-1.4 2.1-1.6 3.3-.2 2.5.2 3.7 1.1 2.3 2 3.1l18.7 17.5c-.2 2-.4 3.9-.6 5.9L3.5 249.8c-1.1.7-1.9 1.6-2.6 2.7s-.9 2.3-.9 3.6.3 2.5.9 3.6 1.5 2 2.6 2.7l21.8 13.5c.2 2 .3 3.9.6 5.9L7.1 299.1c-.9.9-1.6 1.9-2 3.1s-.5 2.5-.2 3.7.8 2.4 1.6 3.3 1.8 1.7 3 2.1l24 9c.6 1.9 1.1 3.8 1.7 5.6l-15 20.8c-.7 1-1.2 2.2-1.3 3.4s0 2.5.5 3.7 1.2 2.2 2.2 2.9 2.1 1.3 3.4 1.5l25.4 4.2 2.7 5.1-10.5 23.6c-.5 1.1-.7 2.4-.6 3.6s.5 2.5 1.2 3.5c.7 1.1 1.6 1.9 2.7 2.5s2.4.8 3.6.8l25.8-.9c1.2 1.5 2.4 2.9 3.6 4.4L73 430.2c-.3 1.2-.3 2.5.1 3.7s1 2.3 1.9 3.2 2 1.5 3.2 1.9 2.5.4 3.7.1l25.2-5.9c1.5 1.2 2.9 2.4 4.4 3.6l-.9 25.8c0 1.3.2 2.5.8 3.6s1.4 2.1 2.5 2.8 2.2 1.1 3.5 1.2 2.5-.1 3.6-.6l23.4-10.7 5.1 2.7 4.2 25.4c.2 1.2.7 2.4 1.5 3.4s1.8 1.8 2.9 2.2 2.4.7 3.7.5 2.4-.6 3.4-1.3l20.8-15c1.9.6 3.8 1.1 5.6 1.7l9 24c.4 1.2 1.2 2.2 2.1 3s2.1 1.4 3.3 1.6 2.5.2 3.7-.2 2.3-1.1 3.1-2l17.5-18.7c2 .2 3.9.4 5.9.6l13.5 21.8c.7 1.1 1.6 1.9 2.7 2.6s2.3.9 3.6.9 2.5-.3 3.6-.9 2-1.5 2.7-2.6l13.5-21.8c2-.2 3.9-.3 5.9-.6l17.5 18.7c.9.9 1.9 1.6 3.1 2s2.5.5 3.7.2 2.4-.8 3.3-1.6 1.7-1.8 2.1-3l9-24c1.9-.6 3.8-1.1 5.6-1.7l20.8 15c1 .7 2.2 1.2 3.4 1.3s2.5 0 3.7-.5 2.2-1.2 2.9-2.2 1.3-2.1 1.5-3.4l4.2-25.4 5.1-2.7 23.4 10.7c1.1.5 2.4.7 3.6.6s2.4-.5 3.5-1.2 1.9-1.6 2.5-2.8.8-2.4.8-3.6l-.9-25.8c1.5-1.2 2.9-2.4 4.4-3.6l25.2 5.9c1.2.3 2.5.3 3.7-.1s2.3-1 3.2-1.9 1.5-2 1.9-3.2.4-2.5.1-3.7l-5.9-25.2c1.2-1.4 2.4-2.9 3.6-4.4l25.8.9c1.3.1 2.5-.2 3.6-.8s2.1-1.4 2.8-2.5c.7-1 1.1-2.2 1.2-3.5s-.1-2.5-.6-3.6l-10.7-23.4 2.7-5.1 25.4-4.2c1.2-.2 2.4-.7 3.4-1.5s1.8-1.8 2.2-2.9.7-2.4.5-3.7-.6-2.4-1.3-3.4l-15-20.8c.6-1.9 1.1-3.8 1.7-5.6l24-9c1.2-.4 2.2-1.2 3-2.1s1.4-2.1 1.6-3.3.2-2.5-.2-3.7-1.1-2.3-2-3.1l-18.7-17.5c.2-1.9.4-3.9.6-5.9l21.8-13.5c1.1-.7 1.9-1.6 2.6-2.7s.9-2.3.9-3.6-.3-2.5-.9-3.6-1.5-2-2.6-2.7m-151 129.1c-3.6-.8-7.4-.1-10.5 1.9s-5.3 5.2-6 8.8l-7.6 35.7c-24.6 11.1-51.3 16.8-78.3 16.7s-53.6-6.1-78.1-17.4l-7.6-35.7c-.4-1.8-1.1-3.5-2.1-5s-2.4-2.8-3.9-3.8-3.2-1.7-5-2-3.6-.3-5.4.1l-31.5 6.8c-5.8-6-11.3-12.5-16.3-19.2h153.2c1.7 0 2.9-.3 2.9-1.9v-54.2c0-1.6-1.2-1.9-2.9-1.9h-44.8v-34.4h48.5c4.4 0 23.7 1.3 29.8 25.9 1.9 7.5 6.2 32.1 9.1 40 2.9 8.8 14.6 26.5 27.1 26.5h79c-5.3 7.1-11.1 13.8-17.3 20.1l-32.1-6.9zm25.8 34.5c0 3-.9 6-2.6 8.5s-4 4.5-6.8 5.6-5.8 1.5-8.8.9-5.7-2-7.8-4.2-3.6-4.8-4.2-7.8-.3-6 .8-8.8 3.1-5.2 5.6-6.9 5.4-2.6 8.5-2.6h.4c4 .1 7.7 1.8 10.5 4.6s4.3 6.7 4.3 10.6h.1zm-225.6-.7c0 3-.9 6-2.6 8.5s-4.1 4.5-6.8 5.6-5.8 1.5-8.8.9-5.7-2-7.8-4.2-3.6-4.8-4.2-7.8-.3-6 .9-8.8 3.1-5.2 5.6-6.8 5.4-2.6 8.5-2.6h.5c4 .1 7.7 1.8 10.5 4.6s4.3 6.7 4.3 10.6h.1zM69.6 234.2l32.8-14.6c1.7-.7 3.2-1.8 4.4-3.1s2.2-2.9 2.9-4.6 1-3.5.9-5.3-.5-3.6-1.2-5.3l-6.8-15.2h26.6v119.7H75.6c-6.6-23.2-8.7-47.6-6.1-71.6zm-11.3-36.1c0-2 .4-4 1.2-5.8s1.9-3.5 3.3-4.9 3.1-2.5 4.9-3.3 3.8-1.2 5.8-1.2h.5c3 .1 5.9 1 8.3 2.8s4.3 4.1 5.4 6.9 1.3 5.8.7 8.8-2.1 5.6-4.3 7.7-4.9 3.5-7.8 4.1-6 .2-8.7-.9-5.1-3.1-6.8-5.6-2.5-5.4-2.5-8.4zm155.2 24.5v-35.3h63.3c3.3 0 23.1 3.8 23.1 18.6 0 12.3-15.2 16.7-27.7 16.7zM399 306.7c-9.8 1.1-20.6-4.1-22-10.1-5.8-32.5-15.4-39.4-30.6-51.4 18.9-12 38.5-29.6 38.5-53.3 0-25.5-17.5-41.6-29.4-49.5-16.8-11-35.3-13.2-40.3-13.2H116.3c27.5-30.7 64.4-51.5 104.9-59.2l23.5 24.6c1.3 1.3 2.8 2.4 4.4 3.1s3.5 1.1 5.3 1.2 3.6-.3 5.3-.9 3.2-1.7 4.6-2.9l26.3-25c26.8 5 52.1 15.8 74.3 31.6s40.6 36.2 54.1 59.9l-18 40.6c-1.5 3.4-1.5 7.2-.2 10.6s3.9 6.2 7.3 7.7l34.6 15.3c1.1 10.8 1.2 21.7.4 32.5h-19.3c-1.9 0-2.7 1.3-2.7 3.1v8.8c0 20.8-11.7 25.3-22 26.5zM240 60.2c0-4 1.6-7.9 4.5-10.7s6.7-4.5 10.7-4.5h.4c3 .1 5.9 1 8.4 2.8s4.3 4.1 5.4 6.9 1.3 5.8.7 8.8-2.1 5.6-4.3 7.7-4.9 3.5-7.8 4-6 .2-8.7-.9-5.1-3.1-6.8-5.6-2.5-5.4-2.5-8.4zM436.8 214c-2 0-4-.4-5.8-1.2s-3.5-1.9-4.9-3.3-2.5-3.1-3.3-4.9-1.2-3.8-1.2-5.8.4-4 1.2-5.8 1.9-3.5 3.3-4.9 3.1-2.5 4.9-3.3 3.8-1.2 5.8-1.2h.4c4 .1 7.9 1.7 10.7 4.6s4.4 6.8 4.3 10.8-1.7 7.9-4.6 10.7-6.8 4.4-10.8 4.3"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.tabs.link", "toc.follow"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiato", "clipboard.copy": "Copia", "search.result.more.one": "1 altro in questa pagina", "search.result.more.other": "# altri in questa pagina", "search.result.none": "Nessun documento trovato", "search.result.one": "1 documento trovato", "search.result.other": "# documenti trovati", "search.result.placeholder": "Scrivi per iniziare a cercare", "search.result.term.missing": "Non presente", "select.version": "Seleziona la versione"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
