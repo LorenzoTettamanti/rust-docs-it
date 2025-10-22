@@ -46,7 +46,7 @@ Questo progetto si propone di tradurre in italiano la documentazione ufficiale d
 
 ### Per lettori
 
-Visita [rust-ita.github.io/rust-docs-it/](https://rust-ita.github.io/rust-docs-it/) per leggere la documentazione tradotta.
+Visita [rust-ita.github.io/rust-docs-it](https://rust-ita.github.io/rust-docs-it/) per leggere la documentazione tradotta.
 
 ### Per contributori
 
