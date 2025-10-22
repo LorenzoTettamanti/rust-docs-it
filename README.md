@@ -205,8 +205,6 @@ Sì, la licenza MIT/Apache-2.0 permette uso commerciale. Vedi i file di licenza 
 
 <div align="center">
 
-**Fatto con ❤️ dalla community Rust italiana**
-
 [Sito](https://rust-ita.github.io/) • [GitHub](https://github.com/rust-ita) • [Contribuisci](docs/CONTRIBUTING.md)
 
 </div>
