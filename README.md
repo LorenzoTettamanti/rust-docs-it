@@ -105,7 +105,7 @@ Ci sono molti modi per contribuire:
 | Sezione | Stato | Assegnatario |
 |---------|-------|--------------|
 | Standard Library - Primitives | 📝 In corso | @username |
-| Standard Library - Vec | 📅 Pianificato | - |
+| Standard Library - Vec | 📝 In corso | @AndreaBozzo |
 | Standard Library - HashMap | 📅 Pianificato | - |
 | Standard Library - String | 📅 Pianificato | - |
 | Standard Library - Option/Result | 📅 Pianificato | - |
