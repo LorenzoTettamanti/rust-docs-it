@@ -148,7 +148,7 @@ Legenda: ✅ Completato | 📝 In corso | 👀 In revisione | 📅 Pianificato
 
 ### Maintainers
 
-- [@tuo-username](https://github.com/tuo-username)
+- [@AndreaBozzo](https://github.com/AndreaBozzo)
 - [@LorenzoTettamanti](https://github.com/LorenzoTettamanti)
 
 ### Contributors
