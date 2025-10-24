@@ -232,6 +232,330 @@ v.clear();
 assert_eq!(v.len(), 0);
 ```
 
+## Manipolazione avanzata degli elementi
+
+### insert
+
+Inserisce un elemento in una posizione specifica, spostando tutti gli elementi successivi a destra:
+
+```rust
+let mut v = vec![1, 2, 3];
+v.insert(1, 4);
+assert_eq!(v, vec![1, 4, 2, 3]);
+```
+
+!!! warning "Prestazioni di insert"
+    `insert(i, val)` è O(n) perché tutti gli elementi dopo l'indice devono essere spostati. Se l'ordine non è importante, considera di aggiungere alla fine con `push` che è O(1).
+
+### swap_remove
+
+Rimuove un elemento sostituendolo con l'ultimo elemento del vector. Questo è molto più veloce di `remove` perché non richiede di spostare gli elementi:
+
+```rust
+let mut v = vec!["foo", "bar", "baz", "qux"];
+
+assert_eq!(v.swap_remove(1), "bar");
+assert_eq!(v, vec!["foo", "qux", "baz"]);
+
+assert_eq!(v.swap_remove(0), "foo");
+assert_eq!(v, vec!["baz", "qux"]);
+```
+
+!!! tip "Quando usare swap_remove"
+    - **Usa `swap_remove`** quando l'ordine degli elementi non è importante e vuoi prestazioni O(1)
+    - **Usa `remove`** quando devi preservare l'ordine degli elementi (anche se è O(n))
+
+### truncate
+
+Accorcia il vector alla lunghezza specificata. Se la lunghezza attuale è già minore o uguale, non fa nulla:
+
+```rust
+let mut v = vec![1, 2, 3, 4, 5];
+v.truncate(2);
+assert_eq!(v, vec![1, 2]);
+
+// Non fa nulla se la lunghezza è già minore
+v.truncate(10);
+assert_eq!(v, vec![1, 2]);
+```
+
+!!! note "truncate vs clear"
+    `truncate(0)` è equivalente a `clear()`, ma `clear()` è più esplicito e leggibile quando vuoi svuotare completamente il vector.
+
+### retain
+
+Mantiene solo gli elementi che soddisfano un predicato, rimuovendo tutti gli altri:
+
+```rust
+let mut v = vec![1, 2, 3, 4, 5, 6];
+v.retain(|&x| x % 2 == 0);
+assert_eq!(v, vec![2, 4, 6]);
+```
+
+Questo metodo è efficiente perché modifica il vector in-place senza allocazioni aggiuntive.
+
+### dedup
+
+Rimuove elementi duplicati consecutivi:
+
+```rust
+let mut v = vec![1, 2, 2, 3, 2];
+v.dedup();
+assert_eq!(v, vec![1, 2, 3, 2]);
+```
+
+!!! warning "dedup funziona solo su elementi consecutivi"
+    Nota che `dedup` rimuove solo duplicati adiacenti. Per rimuovere tutti i duplicati, devi prima ordinare il vector:
+
+    ```rust
+    let mut v = vec![1, 2, 2, 3, 2, 1];
+    v.sort();
+    v.dedup();
+    assert_eq!(v, vec![1, 2, 3]);
+    ```
+
+## Vec e Slice
+
+Una delle caratteristiche più importanti di `Vec` è la sua relazione con le **slice** (`&[T]`). Comprendere questa relazione è fondamentale per scrivere codice Rust idiomatico.
+
+### Coercion automatica
+
+Un `Vec<T>` può essere automaticamente convertito in una slice `&[T]` usando l'operatore `&`:
+
+```rust
+fn processa_numeri(numeri: &[i32]) {
+    for n in numeri {
+        println!("{}", n);
+    }
+}
+
+let v = vec![1, 2, 3, 4, 5];
+processa_numeri(&v);  // Vec<i32> → &[i32]
+```
+
+!!! tip "Best practice: accetta slice, non Vec"
+    Quando scrivi funzioni che necessitano solo di **leggere** una sequenza di elementi, accetta sempre `&[T]` invece di `&Vec<T>`. Questo rende la funzione più flessibile:
+
+    ```rust
+    // ✅ Meglio: accetta qualsiasi sequenza contigua
+    fn somma(numeri: &[i32]) -> i32 {
+        numeri.iter().sum()
+    }
+
+    // ❌ Meno flessibile: accetta solo Vec
+    fn somma_vec(numeri: &Vec<i32>) -> i32 {
+        numeri.iter().sum()
+    }
+
+    let v = vec![1, 2, 3];
+    let arr = [4, 5, 6];
+
+    somma(&v);      // ✅ Funziona
+    somma(&arr);    // ✅ Funziona anche con array!
+
+    somma_vec(&v);  // ✅ Funziona
+    // somma_vec(&arr);  // ❌ Non compila!
+    ```
+
+### as_slice e as_mut_slice
+
+Puoi ottenere esplicitamente una slice da un vector usando i metodi `as_slice()` e `as_mut_slice()`:
+
+```rust
+let v = vec![1, 2, 3];
+let slice: &[i32] = v.as_slice();
+```
+
+Per modifiche mutabili:
+
+```rust
+let mut v = vec![1, 2, 3];
+let slice: &mut [i32] = v.as_mut_slice();
+slice[0] = 10;
+assert_eq!(v, vec![10, 2, 3]);
+```
+
+!!! note "Equivalenza con l'operatore &"
+    `v.as_slice()` è equivalente a `&v[..]` e `&v`. Nella maggior parte dei casi, l'operatore `&` è più conciso e preferibile.
+
+### Differenze chiave tra Vec e Slice
+
+| Caratteristica | Vec<T> | &[T] |
+|---------------|--------|------|
+| **Ownership** | Possiede i dati | Prende in prestito i dati |
+| **Ridimensionabile** | Sì (`push`, `pop`, etc.) | No (dimensione fissa) |
+| **Allocazione** | Heap | Può puntare a heap, stack, o memoria statica |
+| **Uso tipico** | Quando devi modificare la dimensione | Per accesso in sola lettura |
+
+## Operazioni bulk
+
+### append
+
+Sposta tutti gli elementi da un vector a un altro. Il vector sorgente diventa vuoto:
+
+```rust
+let mut v1 = vec![1, 2, 3];
+let mut v2 = vec![4, 5, 6];
+
+v1.append(&mut v2);
+
+assert_eq!(v1, vec![1, 2, 3, 4, 5, 6]);
+assert_eq!(v2, vec![]);  // v2 è ora vuoto
+```
+
+!!! warning "append consuma il vector sorgente"
+    Dopo `append`, il vector sorgente è vuoto ma mantiene la sua capacità allocata. Se vuoi preservare entrambi i vector, usa `extend_from_slice` invece.
+
+### extend_from_slice
+
+Copia tutti gli elementi da una slice alla fine del vector:
+
+```rust
+let mut v = vec![1, 2, 3];
+let slice = [4, 5, 6];
+
+v.extend_from_slice(&slice);
+assert_eq!(v, vec![1, 2, 3, 4, 5, 6]);
+// slice è ancora utilizzabile
+```
+
+Puoi anche estendere da un altro vector senza consumarlo:
+
+```rust
+let mut v1 = vec![1, 2, 3];
+let v2 = vec![4, 5, 6];
+
+v1.extend_from_slice(&v2);
+
+assert_eq!(v1, vec![1, 2, 3, 4, 5, 6]);
+assert_eq!(v2, vec![4, 5, 6]);  // v2 è ancora intatto
+```
+
+### drain
+
+Rimuove un range di elementi e li restituisce come iteratore:
+
+```rust
+let mut v = vec![1, 2, 3, 4, 5];
+let drenati: Vec<_> = v.drain(1..4).collect();
+
+assert_eq!(v, vec![1, 5]);
+assert_eq!(drenati, vec![2, 3, 4]);
+```
+
+Puoi anche usare `drain` per rimuovere elementi senza raccoglierli:
+
+```rust
+let mut v = vec![1, 2, 3, 4, 5];
+v.drain(2..);  // Rimuove dalla posizione 2 in poi
+assert_eq!(v, vec![1, 2]);
+```
+
+!!! tip "drain è utile per trasformazioni complesse"
+    `drain` è particolarmente utile quando vuoi processare e rimuovere elementi contemporaneamente:
+
+    ```rust
+    let mut v = vec![1, 2, 3, 4, 5];
+    let somma: i32 = v.drain(1..4).sum();
+    assert_eq!(somma, 9);  // 2 + 3 + 4
+    assert_eq!(v, vec![1, 5]);
+    ```
+
+### split_off
+
+Divide il vector in due parti alla posizione specificata:
+
+```rust
+let mut v = vec![1, 2, 3, 4, 5, 6];
+let v2 = v.split_off(3);
+
+assert_eq!(v, vec![1, 2, 3]);
+assert_eq!(v2, vec![4, 5, 6]);
+```
+
+Questo metodo è utile quando devi separare i dati in due vector distinti mantenendo l'ownership di entrambi.
+
+## Gestione avanzata della capacità
+
+Oltre ai metodi base di gestione della capacità, `Vec` offre controllo fine sulla memoria allocata.
+
+### reserve
+
+Riserva capacità per almeno `n` elementi aggiuntivi:
+
+```rust
+let mut v = vec![1];
+v.reserve(10);
+
+// La capacità ora è almeno 11 (1 esistente + 10 riservati)
+assert!(v.capacity() >= 11);
+```
+
+Questo è utile quando sai quanti elementi aggiungerai, evitando riallocazioni multiple:
+
+```rust
+let mut v = Vec::new();
+
+// Scenario inefficiente: riallocazioni multiple
+for i in 0..1000 {
+    v.push(i);  // Potrebbe riallocare molte volte
+}
+
+// Scenario ottimizzato: una sola allocazione
+let mut v = Vec::new();
+v.reserve(1000);  // Alloca spazio sufficiente subito
+for i in 0..1000 {
+    v.push(i);  // Nessuna riallocazione
+}
+```
+
+### reserve_exact
+
+Come `reserve`, ma richiede esattamente la capacità specificata senza margine aggiuntivo:
+
+```rust
+let mut v = vec![1];
+v.reserve_exact(10);
+assert!(v.capacity() >= 11);
+```
+
+!!! note "reserve vs reserve_exact"
+    `reserve` può allocare più spazio del richiesto per ridurre future riallocazioni. `reserve_exact` alloca solo lo spazio necessario. Nella maggior parte dei casi, `reserve` è la scelta migliore.
+
+### shrink_to_fit
+
+Riduce la capacità del vector al minimo necessario per contenere gli elementi:
+
+```rust
+let mut v = Vec::with_capacity(100);
+v.push(1);
+v.push(2);
+v.push(3);
+
+assert!(v.capacity() >= 100);
+
+v.shrink_to_fit();
+assert!(v.capacity() >= 3);
+```
+
+!!! warning "shrink_to_fit non garantisce una capacità esatta"
+    L'allocatore potrebbe comunque allocare più spazio del richiesto. Questo metodo è solo un suggerimento per liberare memoria in eccesso.
+
+### shrink_to
+
+Riduce la capacità del vector a un valore minimo specificato:
+
+```rust
+let mut v = Vec::with_capacity(100);
+v.extend([1, 2, 3]);
+
+v.shrink_to(10);
+assert!(v.capacity() >= 10);
+assert!(v.capacity() < 100);
+```
+
+Questo è utile quando vuoi ridurre la memoria ma mantenere un buffer di capacità per future aggiunte.
+
 ## Metodi comuni
 
 | Metodo | Descrizione | Esempio |
