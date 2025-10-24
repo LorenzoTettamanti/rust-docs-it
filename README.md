@@ -5,8 +5,6 @@
 
 Traduzione italiana della documentazione ufficiale di Rust..
 
-📖 **[Leggi la documentazione](https://rust-ita.github.io/)** (quando pubblicata)
-
 ---
 
 ## 🎯 Obiettivi
