@@ -3,7 +3,7 @@
 !!! info "Riferimento originale"
     📖 [Documentazione originale](https://doc.rust-lang.org/std/#primitives)
     🔄 Ultimo aggiornamento: Ottobre 2025
-    📝 Versione Rust: 1.82+
+    📝 Versione Rust: 1.90+
 
 I **tipi primitivi** sono i mattoni fondamentali del linguaggio Rust. Questi tipi sono integrati nel linguaggio stesso e forniscono le operazioni base per lavorare con numeri, testo, valori logici e strutture dati fondamentali.
 

@@ -1,9 +1,9 @@
 # Vec&lt;T&gt;
 
 !!! info "Riferimento originale"
-    📖 [Documentazione originale](https://doc.rust-lang.org/std/vec/struct.Vec.html)  
-    🔄 Ultimo aggiornamento: Ottobre 2025  
-    📝 Versione Rust: 1.82+
+    📖 [Documentazione originale](https://doc.rust-lang.org/std/vec/struct.Vec.html)
+    🔄 Ultimo aggiornamento: Ottobre 2025
+    📝 Versione Rust: 1.90+
 
 Un array dinamico ridimensionabile, scritto come `Vec<T>` ma pronunciato "vector".
 

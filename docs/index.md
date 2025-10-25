@@ -196,7 +196,7 @@ Questa traduzione è un progetto della community. Puoi contribuire in diversi mo
 
 ---
 
-**Ultima revisione**: Ottobre 2025  
-**Versione Rust**: 1.82+
+**Ultima revisione**: Ottobre 2025
+**Versione Rust**: 1.90+
 
 *Documentazione originale © The Rust Project Developers | Traduzione © Rust Italia Community*
