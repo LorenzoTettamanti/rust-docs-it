@@ -159,11 +159,16 @@ Rust ha un'ottima documentazione, un compilatore amichevole con messaggi di erro
 Questa traduzione è un progetto della community. Puoi contribuire in diversi modi:
 
 - 📝 Traducendo nuove sezioni
-- 🔍 Revisionando traduzioni esistenti  
+- 🔍 Revisionando traduzioni esistenti
 - 🐛 Segnalando errori o imprecisioni
 - 💭 Discutendo scelte terminologiche
 
 [**Scopri come contribuire →**](CONTRIBUTING.md){ .md-button .md-button--primary }
+
+!!! info "Stato della traduzione"
+    **Versione Rust corrente**: 1.90+ (Ottobre 2025)
+
+    Questa traduzione è allineata con Rust 1.90. Per informazioni su aggiornamenti futuri e deprecazioni, consulta la pagina [Stato Aggiornamenti](DEPRECATIONS.md).
 
 ---
 

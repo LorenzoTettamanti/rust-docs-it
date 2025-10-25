@@ -100,9 +100,11 @@ Ci sono molti modi per contribuire:
 
 ## 📋 Stato della traduzione
 
+**Versione Rust**: 1.90+ (Ottobre 2025)
+
 | Sezione | Stato | Assegnatario |
 |---------|-------|--------------|
-| Standard Library - Primitives | 📝 In corso | @AndreaBozzo |
+| Standard Library - Primitives | ✅ Completato | @AndreaBozzo |
 | Standard Library - Vec | ✅ Completato | @AndreaBozzo |
 | Standard Library - HashMap | 📅 Pianificato | - |
 | Standard Library - String | 📅 Pianificato | - |
@@ -113,6 +115,8 @@ Ci sono molti modi per contribuire:
 | Book - Ch 4: Ownership | 📅 Pianificato | - |
 
 Legenda: ✅ Completato | 📝 In corso | 👀 In revisione | 📅 Pianificato
+
+📊 **Vedi anche**: [Stato Aggiornamenti e Deprecazioni](https://rust-ita.github.io/rust-docs-it/DEPRECATIONS/) per info su versioni e cambiamenti futuri
 
 ## 🛠️ Tecnologie utilizzate
 

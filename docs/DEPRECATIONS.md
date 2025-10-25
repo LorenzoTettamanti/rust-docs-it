@@ -211,7 +211,7 @@ let result = x.nuovo_metodo();
 
 ## Vedi Anche
 
-- [CHANGELOG.md](../CHANGELOG.md) - Storia delle modifiche alla traduzione
+- [CHANGELOG.md](https://github.com/rust-ita/rust-docs-it/blob/main/CHANGELOG.md) - Storia delle modifiche alla traduzione
 - [CONTRIBUTING.md](CONTRIBUTING.md) - Come contribuire
 - [Rust Release Process](https://forge.rust-lang.org/release/process.html) - Processo di release ufficiale
 
