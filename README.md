@@ -21,9 +21,10 @@ Questo progetto si propone di tradurre in italiano la documentazione ufficiale d
 ### Priorità alta
 
 - [x] Setup iniziale del progetto
-- [ ] **The Rust Standard Library**
-  - [ ] Tipi primitivi
-  - [ ] Collections (Vec, HashMap, HashSet)
+- [x] **The Rust Standard Library**
+  - [x] Tipi primitivi (18 tipi completi!)
+  - [x] Collections - Vec\<T\>
+  - [ ] Collections - HashMap, HashSet
   - [ ] String e &str
   - [ ] Option e Result
   - [ ] Iterators
@@ -32,6 +33,8 @@ Questo progetto si propone di tradurre in italiano la documentazione ufficiale d
   - [ ] Capitoli introduttivi (1-5)
   - [ ] Ownership e borrowing (4)
   - [ ] Structs, enums e pattern matching (5-6)
+
+**Note**: Per le sezioni non ancora tradotte, abbiamo creato pagine placeholder con link alla documentazione ufficiale in inglese.
 
 ### Roadmap futura
 
@@ -170,11 +173,26 @@ La documentazione originale è © The Rust Project Developers.
 
 ## 🔗 Link utili
 
+### Questo Progetto
+
+- 📚 [Documentazione tradotta](https://rust-ita.github.io/rust-docs-it/)
+- 📋 [CHANGELOG](CHANGELOG.md) - Storia delle modifiche
+- ⚠️ [Stato Aggiornamenti](https://rust-ita.github.io/rust-docs-it/DEPRECATIONS/) - Versioni e deprecazioni
+- 🤝 [Guida al Contributo](docs/CONTRIBUTING.md)
+- 📖 [Glossario](docs/GLOSSARY.md)
+
+### Risorse Ufficiali Rust
+
 - [Documentazione Rust originale](https://doc.rust-lang.org/)
 - [The Rust Programming Language](https://doc.rust-lang.org/book/)
 - [Rust Standard Library](https://doc.rust-lang.org/std/)
-- [Rust Italia Community](https://github.com/rust-ita)
 - [Rust Official Website](https://www.rust-lang.org/)
+
+### Community
+
+- [Rust Italia Community](https://github.com/rust-ita)
+- [Rust Forum](https://users.rust-lang.org/)
+- [Rust Discord](https://discord.gg/rust-lang)
 
 ## ❓ FAQ
 
@@ -205,8 +223,6 @@ Sì, la licenza MIT/Apache-2.0 permette uso commerciale. Vedi i file di licenza 
 
 ---
 
-<div align="center">
+---
 
-[Sito](https://rust-ita.github.io/) • [GitHub](https://github.com/rust-ita) • [Contribuisci](docs/CONTRIBUTING.md)
-
-</div>
+**[🌐 Sito](https://rust-ita.github.io/rust-docs-it/)** • **[📦 GitHub](https://github.com/rust-ita/rust-docs-it)** • **[🤝 Contribuisci](docs/CONTRIBUTING.md)**
