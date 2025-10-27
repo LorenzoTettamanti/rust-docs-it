@@ -110,6 +110,13 @@ nav:
     - book/index.md
     - Introduzione: book/ch00-introduction.md
     - Per Iniziare: book/ch01-getting-started.md
+  - Case Study:
+    - case-study/index.md
+    - Rustmon:
+      - Panoramica: case-study/rustmon/index.md
+      - Ownership in Pratica: case-study/rustmon/ownership.md
+      - Enums e Pattern Matching: case-study/rustmon/enums.md
+      - Traits: case-study/rustmon/traits.md
   - Guida al Contributo: CONTRIBUTING.md
   - Glossario: GLOSSARY.md
   - Stato Aggiornamenti: DEPRECATIONS.md
