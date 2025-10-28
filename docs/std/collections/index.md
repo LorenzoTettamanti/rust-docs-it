@@ -142,7 +142,7 @@ HashMap utilizza i costi previsti. È teoricamente possibile, anche se molto imp
 #### Utilizzo corretto ed efficiente delle collection
 Naturalmente, sapere quale collection è quella giusta per il lavoro non ti permette immediatamente di implementarla correttamente. Ecco alcuni suggerimenti rapidi per un uso efficiente e corretto delle collection standard. Se sei interessato a come utilizzarne una specifica in particolare, consulta la relativa documentazione per una discussione dettagliata ed esempi di codice.
 
-#### Gestione della capacita' (Capacity Management) 
+#### Gestione della capacità (Capacity Management) 
 Molte collection forniscono diversi costruttori e metodi che fanno riferimento alla “capacità”. Queste raccolte sono generalmente costruite su un array. Idealmente, questo array dovrebbe avere esattamente le dimensioni giuste per contenere solo gli elementi memorizzati nella collection, ma sarebbe molto inefficiente. Se l'array di supporto avesse sempre le dimensioni giuste, ogni volta che viene inserito un elemento, la collection dovrebbe aumentare le dimensioni dell'array per contenerlo. A causa del modo in cui la memoria viene allocata e gestita sulla maggior parte dei computer, ciò richiederebbe quasi certamente l'allocazione di un array completamente nuovo e la copia di ogni singolo elemento da quello vecchio a quello nuovo. È facile intuire che ciò non sarebbe molto efficiente da fare ad ogni operazione.
 La maggior parte delle collection utilizza quindi una strategia di allocazione ammortizzata. In genere si lasciano una discreta quantità di spazio libero in modo da dover crescere solo occasionalmente. Quando crescono, allocano un array sostanzialmente più grande in cui spostare gli elementi, in modo che ci voglia un po' di tempo prima che sia necessaria un'altra crescita. Sebbene questa strategia sia ottima in generale, sarebbe ancora meglio se la raccolta non dovesse mai ridimensionare il proprio array di supporto. Sfortunatamente, la collection stessa non dispone di informazioni sufficienti per farlo autonomamente. Pertanto, spetta a noi programmatori fornirle dei suggerimenti.
 
@@ -204,6 +204,125 @@ for x in vec.iter().rev() {
 ```
 
 Diversi altri metodi di raccolta restituiscono anch'essi iteratori per produrre una sequenza di risultati, ma evitano di allocare un'intera raccolta per memorizzare il risultato. Ciò garantisce la massima flessibilità, poiché è possibile richiamare collect o extend per “convogliare” la sequenza in qualsiasi raccolta, se lo si desidera. In alternativa, è possibile eseguire un ciclo sulla sequenza con un ciclo for. L'iteratore può anche essere scartato dopo un uso parziale, evitando il calcolo degli elementi non utilizzati.
+
+### Entries
+
+L'API entry ha lo scopo di fornire un meccanismo efficiente per manipolare i contenuti di una mappa(*_map_*) in base alla presenza o meno di una chiave. Il principale caso d'uso è quello di fornire mappe accumulatori efficienti. Ad esempio, se si desidera mantenere un conteggio del numero di volte in cui ogni chiave è stata vista, sarà necessario eseguire una logica condizionale per verificare se questa è la prima volta che la chiave viene vista o meno. Normalmente, ciò richiederebbe una ricerca (*_find_*) seguita da un inserimento (*_insert_*), duplicando di fatto lo sforzo di ricerca ad ogni inserimento.
+
+Quando un utente chiama *_map.entry(key)_*, la mappa cercherà la chiave e poi restituirà una variante dell'enumerazione *_Entry_*.
+
+Se viene restituito un *_Vacant(entry)_*, significa che la chiave non è stata trovata. In questo caso l'unica operazione valida è inserire un valore nella voce. Una volta fatto ciò, la voce vacante viene consumata e convertita in un riferimento mutabile al valore che è stato inserito. Ciò consente un'ulteriore manipolazione del valore oltre la durata della ricerca stessa. Ciò è utile se è necessario eseguire una logica complessa sul valore indipendentemente dal fatto che il valore sia stato appena inserito.
+
+Se viene restituito un _*Occupied(entry)*_, significa che la chiave è stata trovata. In questo caso, l'utente ha diverse opzioni: può ottenere, inserire o rimuovere il valore della voce occupata. Inoltre, può convertire la voce occupata in un riferimento mutabile al suo valore, fornendo simmetria al caso di inserimento vacante.
+
+### Esempi
+
+Ecco i due modi principali in cui viene utilizzato *_entry_*. Di seguito è riportato un semplice esempio in cui la logica eseguita sui valori è banale.
+
+#### Contare il numero di volte in cui ogni carattere compare in una stringa
+
+```rust
+use std::collections::btree_map::BTreeMap;
+
+let mut count = BTreeMap::new();
+let message = "she sells sea shells by the sea shore";
+
+for c in message.chars() {
+    *count.entry(c).or_insert(0) += 1;
+}
+
+assert_eq!(count.get(&'s'), Some(&8));
+
+println!("Number of occurrences of each character");
+for (char, count) in &count {
+    println!("{char}: {count}");
+}
+```
+
+Quando la logica da eseguire sul valore è più complessa, possiamo semplicemente utilizzare l'entry API per garantire che il valore sia inizializzato ed eseguire la logica in un secondo momento.
+
+#### Monitoraggio dello stato di ebbrezza dei clienti in un bar
+
+```rust
+use std::collections::btree_map::BTreeMap;
+
+// A client of the bar. They have a blood alcohol level.
+struct Person { blood_alcohol: f32 }
+
+// All the orders made to the bar, by client ID.
+let orders = vec![1, 2, 1, 2, 3, 4, 1, 2, 2, 3, 4, 1, 1, 1];
+
+// Our clients.
+let mut blood_alcohol = BTreeMap::new();
+
+for id in orders {
+    // If this is the first time we've seen this customer, initialize them
+    // with no blood alcohol. Otherwise, just retrieve them.
+    let person = blood_alcohol.entry(id).or_insert(Person { blood_alcohol: 0.0 });
+
+    // Reduce their blood alcohol level. It takes time to order and drink a beer!
+    person.blood_alcohol *= 0.9;
+
+    // Check if they're sober enough to have another beer.
+    if person.blood_alcohol > 0.3 {
+        // Too drunk... for now.
+        println!("Sorry {id}, I have to cut you off");
+    } else {
+        // Have another!
+        person.blood_alcohol += 0.1;
+    }
+}
+```
+
+#### Insert and complex keys
+
+Se abbiamo una chiave più complessa, le chiamate per l'inserimento (*_insert_*) non aggiorneranno il valore della chiave. Ad esempio:
+
+```rust
+use std::cmp::Ordering;
+use std::collections::BTreeMap;
+use std::hash::{Hash, Hasher};
+
+#[derive(Debug)]
+struct Foo {
+    a: u32,
+    b: &'static str,
+}
+
+// we will compare `Foo`s by their `a` value only.
+impl PartialEq for Foo {
+    fn eq(&self, other: &Self) -> bool { self.a == other.a }
+}
+
+impl Eq for Foo {}
+
+// we will hash `Foo`s by their `a` value only.
+impl Hash for Foo {
+    fn hash<H: Hasher>(&self, h: &mut H) { self.a.hash(h); }
+}
+
+impl PartialOrd for Foo {
+    fn partial_cmp(&self, other: &Self) -> Option<Ordering> { self.a.partial_cmp(&other.a) }
+}
+
+impl Ord for Foo {
+    fn cmp(&self, other: &Self) -> Ordering { self.a.cmp(&other.a) }
+}
+
+let mut map = BTreeMap::new();
+map.insert(Foo { a: 1, b: "baz" }, 99);
+
+// We already have a Foo with an a of 1, so this will be updating the value.
+map.insert(Foo { a: 1, b: "xyz" }, 100);
+
+// The value has been updated...
+assert_eq!(map.values().next().unwrap(), &100);
+
+// ...but the key hasn't changed. b is still "baz", not "xyz".
+assert_eq!(map.keys().next().unwrap().b, "baz");
+```
+
+
 
 ---
 
