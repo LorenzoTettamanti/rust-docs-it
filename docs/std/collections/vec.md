@@ -33,7 +33,7 @@ let v: Vec<i32> = Vec::new();
 
 Questo crea un vector vuoto. Nota che abbiamo fornito un'annotazione di tipo: poiché non inseriamo alcun valore nel vector, Rust non sa che tipo di elementi intendiamo memorizzare.
 
-### Usando la macro vec!
+### Usando la macro vec
 
 ```rust
 let v = vec![1, 2, 3];

@@ -23,6 +23,7 @@ La documentazione viene aggiornata seguendo le release stabili di Rust, che segu
 ### Compatibilità
 
 La nostra traduzione indica **"Versione Rust: X.YY+"** per indicare:
+
 - La documentazione è accurata per la versione X.YY
 - È compatibile con le versioni successive finché non ci sono breaking changes
 - Potrebbe non coprire nuove feature aggiunte dopo X.YY
@@ -166,6 +167,7 @@ Se noti che la documentazione italiana non è aggiornata con l'ultima versione R
 ### Cosa Facciamo Quando Rust Depreca una Feature
 
 1. **Aggiungiamo warning box** alla documentazione esistente:
+
    ```markdown
    !!! warning "Deprecato da Rust X.YY"
        Questa feature è deprecata. Usa [alternativa] invece.

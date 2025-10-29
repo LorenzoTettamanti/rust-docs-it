@@ -15,33 +15,33 @@ jobs:
   build:
     name: Build MkDocs
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Necessario per git-revision-date-localized
-      
+          fetch-depth: 0 # Necessario per git-revision-date-localized
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
-          cache: 'pip'
-      
+          python-version: "3.11"
+          cache: "pip"
+
       - name: Install dependencies
         run: |
           pip install --upgrade pip
           pip install -r requirements.txt
-      
+
       - name: Build documentation
         run: mkdocs build
-      
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: documentation
           path: site/
-  
+
   deploy:
     name: Deploy to GitHub Pages
     needs: build

@@ -275,7 +275,7 @@ Quando revisioni una PR, controlla:
 
 ```markdown
 # ✅ Feedback costruttivo
-"Qui suggerirei 'prendere in prestito' invece di 'borroware' 
+"Qui suggerirei 'prendere in prestito' invece di 'borroware'
 per essere più coerenti con il glossario. Vedi GLOSSARY.md."
 
 # ❌ Feedback poco utile
@@ -321,6 +321,7 @@ Stiamo dando priorità alle sezioni più utilizzate:
 ### Quanto tempo dovrebbe richiedere una traduzione?
 
 Dipende dalla lunghezza, ma in media:
+
 - Pagina piccola: 1-2 ore
 - Pagina media: 3-5 ore
 - Pagina grande: 1-2 giorni

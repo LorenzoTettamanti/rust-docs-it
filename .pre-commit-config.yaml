@@ -1,0 +1,52 @@
+# Pre-commit hooks configuration for rust-docs-it
+# See https://pre-commit.com for more information
+
+repos:
+  # General file checks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+      - id: end-of-file-fixer
+      - id: check-yaml
+        exclude: ^mkdocs\.yml$  # MkDocs uses special YAML tags
+      - id: check-added-large-files
+        args: ['--maxkb=1000']
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: mixed-line-ending
+        args: ['--fix=lf']
+
+  # Markdown linting
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.39.0
+    hooks:
+      - id: markdownlint
+        args: ['--fix', '--config', '.markdownlint.json']
+
+  # Python code quality (for mkdocs and scripts)
+  - repo: https://github.com/psf/black
+    rev: 24.2.0
+    hooks:
+      - id: black
+        language_version: python3
+        files: \.py$
+
+  # YAML formatting
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.1.0
+    hooks:
+      - id: prettier
+        types_or: [yaml, json]
+        exclude: ^(docs/|mkdocs\.yml)
+
+  # Check for common typos
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.2.6
+    hooks:
+      - id: codespell
+        args:
+          - --ignore-words-list=crate,crates,ect,mut,nd,ser,te,ue,alle,tre,possibile,nome,rende,sequenze,strutture,accessibile,categorie,limite,serie,valide,stati,copie,implicite,normale,contro,succede,ignora,classe,momento,ore,allo,distribuite,vai,accelerare,compatibile
+          - --skip="*.pyc,*.svg,*.json,site/*"
+        exclude: ^(docs/GLOSSARY\.md|CHANGELOG\.md)$

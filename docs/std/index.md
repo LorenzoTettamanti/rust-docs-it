@@ -69,31 +69,37 @@ Vuoi aiutarci a tradurre una sezione della Standard Library?
 La Standard Library è organizzata in moduli:
 
 ### Core Types
+
 - **Primitive types** ✅ - bool, char, i32, str, array, slice, etc.
 - **std::option** 📅 - Option\<T\> per valori opzionali
 - **std::result** 📅 - Result\<T, E\> per gestione errori
 
 ### Collections
+
 - **std::vec** ✅ - Vec\<T\> array dinamici
 - **std::collections** 📅 - HashMap, HashSet, BTreeMap, etc.
 - **std::string** 📅 - String tipo heap-allocated
 
 ### Utility Types
+
 - **std::boxed** - Box\<T\> smart pointer heap
 - **std::rc** - Rc\<T\> reference counting
 - **std::cell** - Cell e RefCell per interior mutability
 
 ### I/O e File System
+
 - **std::io** 📅 - Trait e funzioni I/O
 - **std::fs** 📅 - Operazioni filesystem
 - **std::path** - Gestione path
 
 ### Concurrency
+
 - **std::thread** - Thread nativo
 - **std::sync** - Primitive di sincronizzazione
 - **std::sync::mpsc** - Canali multi-producer single-consumer
 
 ### System
+
 - **std::env** - Variabili ambiente e argomenti
 - **std::process** - Gestione processi
 - **std::time** - Misurazione tempo

@@ -23,7 +23,7 @@ La libreria standard di Rust fornisce le funzionalità fondamentali per scrivere
 
 <div class="grid cards" markdown>
 
--   :material-package-variant-closed:{ .lg .middle } __Tipi Primitivi__
+- :material-package-variant-closed:{ .lg .middle } **Tipi Primitivi**
 
     ---
 
@@ -31,7 +31,7 @@ La libreria standard di Rust fornisce le funzionalità fondamentali per scrivere
 
     [:octicons-arrow-right-24: Esplora](std/primitives.md)
 
--   :material-format-list-bulleted:{ .lg .middle } __Collections__
+- :material-format-list-bulleted:{ .lg .middle } **Collections**
 
     ---
 
@@ -39,7 +39,7 @@ La libreria standard di Rust fornisce le funzionalità fondamentali per scrivere
 
     [:octicons-arrow-right-24: Scopri di più](std/collections/index.md)
 
--   :material-file-document:{ .lg .middle } __I/O & File System__
+- :material-file-document:{ .lg .middle } **I/O & File System**
 
     ---
 
@@ -47,7 +47,7 @@ La libreria standard di Rust fornisce le funzionalità fondamentali per scrivere
 
     [:octicons-arrow-right-24: Leggi](std/io/index.md)
 
--   :material-help-circle:{ .lg .middle } __Option & Result__
+- :material-help-circle:{ .lg .middle } **Option & Result**
 
     ---
 

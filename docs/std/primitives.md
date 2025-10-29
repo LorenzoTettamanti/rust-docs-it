@@ -942,32 +942,38 @@ match y {
 
 ## Quando Usare Ogni Tipo
 
-### Usa i32/u32 quando:
+### Usa i32/u32 quando
+
 - Hai bisogno di un intero generico
 - Il range è sufficiente per i tuoi dati
 - Le prestazioni non sono critiche
 
-### Usa usize quando:
+### Usa usize quando
+
 - Indicizzi array o collection
 - Lavori con dimensioni di memoria
 - Calcoli offset o distanze tra puntatori
 
-### Usa f64 quando:
+### Usa f64 quando
+
 - Hai bisogno di numeri in virgola mobile
 - La precisione è importante
 - Non hai vincoli di memoria stretti
 
-### Usa &str quando:
+### Usa &str quando
+
 - Hai stringhe immutabili
 - Passi stringhe a funzioni (senza ownership)
 - Lavori con letterali stringa
 
-### Usa slice (&[T]) quando:
+### Usa slice (&[T]) quando
+
 - Passi sequenze a funzioni
 - Non hai bisogno di modificare la dimensione
 - Vuoi massima flessibilità (array, Vec, slice)
 
-### Usa reference (&T, &mut T) quando:
+### Usa reference (&T, &mut T) quando
+
 - Vuoi accesso temporaneo senza ownership
 - Rispetti le regole del borrow checker
 - Non hai bisogno di unsafe

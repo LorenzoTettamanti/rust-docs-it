@@ -32,7 +32,7 @@ fn is_fire_type(pokemon: &Pokemon) -> bool {
 }
 ```
 
-### Problemi:
+### Problemi
 
 - ❌ Typo: "Frie" invece di "Fire" compila ma è sbagliato
 - ❌ Case sensitivity: "fire" vs "Fire"
@@ -73,7 +73,7 @@ struct Pokemon {
 }
 ```
 
-### Vantaggi Immediati:
+### Vantaggi Immediati
 
 - ✅ **Impossibile avere typo**: Solo i valori definiti sono validi
 - ✅ **Autocompletamento**: L'IDE suggerisce tutti i tipi

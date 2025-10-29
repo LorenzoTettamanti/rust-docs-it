@@ -10,6 +10,7 @@
 ## 🔗 Documentazione Ufficiale (Inglese)
 
 ### Option\<T\>
+
 Per rappresentare valori opzionali (che potrebbero non esserci).
 
 - 📖 [Option\<T\> - Documentazione ufficiale](https://doc.rust-lang.org/std/option/)
@@ -17,6 +18,7 @@ Per rappresentare valori opzionali (che potrebbero non esserci).
 - 💡 [Rust by Example - Option](https://doc.rust-lang.org/rust-by-example/std/option.html)
 
 ### Result\<T, E\>
+
 Per gestione degli errori in modo type-safe.
 
 - 📖 [Result\<T, E\> - Documentazione ufficiale](https://doc.rust-lang.org/std/result/)

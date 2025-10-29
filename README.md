@@ -24,7 +24,7 @@ Questo progetto si propone di tradurre in italiano la documentazione ufficiale d
 - [x] **The Rust Standard Library**
   - [x] Tipi primitivi (18 tipi completi!)
   - [x] Collections - Vec\<T\>
-  - [ ] Collections - HashMap, HashSet
+  - [x] Collections - HashMap, HashSet
   - [ ] String e &str
   - [ ] Option e Result
   - [ ] Iterators
@@ -60,16 +60,23 @@ Vuoi aiutarci a tradurre? Fantastico! 🎉
 git clone https://github.com/TUO-USERNAME/rust-docs-it.git
 cd rust-docs-it
 
-# 3. Setup ambiente
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-pip install -r requirements.txt
+# 3. Setup ambiente automatico (consigliato)
+bash dev-setup/setup-dev.sh  # Linux/macOS
+# oppure
+dev-setup\setup-dev.bat      # Windows
 
 # 4. Avvia il server di sviluppo
 mkdocs serve
 
 # 5. Apri http://127.0.0.1:8000
 ```
+
+Lo script di setup configura automaticamente:
+
+- Ambiente virtuale Python
+- Dipendenze del progetto
+- Pre-commit hooks per qualità del codice
+- Linting markdown
 
 Leggi la [**Guida al Contributo**](docs/CONTRIBUTING.md) per tutti i dettagli! 📖
 
@@ -109,7 +116,8 @@ Ci sono molti modi per contribuire:
 |---------|-------|--------------|
 | Standard Library - Primitives | ✅ Completato | @AndreaBozzo |
 | Standard Library - Vec | ✅ Completato | @AndreaBozzo |
-| Standard Library - HashMap | 📅 Pianificato | - |
+| Standard Library - HashMap | ✅ Completato | @AndreaBozzo |
+| Standard Library - HashSet | ✅ Completato | @AndreaBozzo |
 | Standard Library - String | 📅 Pianificato | - |
 | Standard Library - Option/Result | 📅 Pianificato | - |
 | Book - Ch 1: Getting Started | 📅 Pianificato | - |
@@ -199,6 +207,7 @@ La documentazione originale è © The Rust Project Developers.
 ### Perché tradurre la documentazione?
 
 Anche se l'inglese è importante nel mondo dello sviluppo, una documentazione nella propria lingua madre può:
+
 - Accelerare l'apprendimento
 - Ridurre il carico cognitivo
 - Rendere Rust più accessibile a un pubblico più ampio
@@ -206,6 +215,7 @@ Anche se l'inglese è importante nel mondo dello sviluppo, una documentazione ne
 ### Gli esempi di codice saranno tradotti?
 
 No, gli esempi di codice rimarranno in inglese per:
+
 - Mantenere coerenza con la community internazionale
 - Evitare confusione con keyword e sintassi
 - Facilitare la ricerca di errori online

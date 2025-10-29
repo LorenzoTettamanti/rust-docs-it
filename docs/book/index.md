@@ -24,36 +24,43 @@
 ## 📖 Capitoli del Libro
 
 ### 1. Getting Started
+
 Setup e primo programma "Hello, World!"
 
 🔗 [Leggi in inglese](https://doc.rust-lang.org/book/ch01-00-getting-started.html)
 
 ### 2. Programming a Guessing Game
+
 Tutorial pratico per imparare i fondamenti.
 
 🔗 [Leggi in inglese](https://doc.rust-lang.org/book/ch02-00-guessing-game-tutorial.html)
 
 ### 3. Common Programming Concepts
+
 Variabili, tipi, funzioni, controllo di flusso.
 
 🔗 [Leggi in inglese](https://doc.rust-lang.org/book/ch03-00-common-programming-concepts.html)
 
 ### 4. Understanding Ownership
+
 Il sistema di ownership di Rust - **Fondamentale!**
 
 🔗 [Leggi in inglese](https://doc.rust-lang.org/book/ch04-00-understanding-ownership.html)
 
 ### 5. Using Structs
+
 Strutture dati personalizzate.
 
 🔗 [Leggi in inglese](https://doc.rust-lang.org/book/ch05-00-structs.html)
 
 ### 6. Enums and Pattern Matching
+
 Enum e il potente pattern matching.
 
 🔗 [Leggi in inglese](https://doc.rust-lang.org/book/ch06-00-enums.html)
 
 ### Capitoli Successivi
+
 - Ch 7: Managing Growing Projects with Packages, Crates, and Modules
 - Ch 8: Common Collections
 - Ch 9: Error Handling
@@ -75,16 +82,19 @@ Enum e il potente pattern matching.
 ## 🎯 Roadmap Traduzione
 
 ### v0.5.0 (Q1 2026)
+
 - [ ] Capitolo 1: Getting Started
 - [ ] Capitolo 2: Guessing Game
 - [ ] Capitolo 3: Common Concepts
 
 ### v0.6.0 (Q2 2026)
+
 - [ ] Capitolo 4: Ownership ⭐ Priorità alta
 - [ ] Capitolo 5: Structs
 - [ ] Capitolo 6: Enums and Pattern Matching
 
 ### Versioni Successive
+
 - Capitoli 7-20 progressivamente
 
 ---
@@ -123,12 +133,14 @@ The Rust Book è un progetto ambizioso e ogni aiuto è prezioso!
 Mentre aspetti la traduzione di The Book:
 
 ### Inglese
+
 - 📖 [The Book (EN)](https://doc.rust-lang.org/book/) - Risorsa principale
 - 💻 [Rust by Example](https://doc.rust-lang.org/rust-by-example/) - Impara con esempi
 - 🏋️ [Rustlings](https://github.com/rust-lang/rustlings/) - Esercizi interattivi
 - 📺 [Rust Tutorial - Let's Get Rusty](https://www.youtube.com/c/LetsGetRusty) - Video tutorial
 
 ### Italiano
+
 - 🇮🇹 Questa documentazione - Standard Library in italiano
 - 🇮🇹 [Rust Italia Discord](https://discord.gg/rust-it) - Community italiana (se esiste)
 

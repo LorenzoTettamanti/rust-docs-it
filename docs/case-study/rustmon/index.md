@@ -75,13 +75,13 @@ Questa sezione contiene analisi approfondite di specifici aspetti di Rustmon:
 
 <div class="grid cards" markdown>
 
--   **[Ownership in Pratica](ownership.md)**
+- **[Ownership in Pratica](ownership.md)**
 
     Come Rustmon gestisce la proprietà dei Pokemon durante le battaglie
 
     *Concetti*: Ownership, Borrowing, References
 
--   **[Enums e Pattern Matching](enums.md)**
+- **[Enums e Pattern Matching](enums.md)**
 
     Il sistema dei tipi Pokemon implementato con enums
 
@@ -93,7 +93,7 @@ Questa sezione contiene analisi approfondite di specifici aspetti di Rustmon:
 
 <div class="grid cards" markdown>
 
--   **[Traits Personalizzati](traits.md)**
+- **[Traits Personalizzati](traits.md)**
 
     Come definire comportamenti comuni per Pokemon e mosse
 

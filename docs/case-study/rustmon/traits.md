@@ -8,6 +8,7 @@
 ## Il Problema
 
 Diversi tipi di entità nel gioco condividono comportamenti comuni:
+
 - Tutti i Pokemon possono **attaccare**
 - Tutti i Pokemon hanno **statistiche** (HP, Attack, Defense)
 - Tutte le mosse possono essere **eseguite** in battaglia
@@ -43,7 +44,8 @@ impl Trainer {
 }
 ```
 
-### Problemi:
+### Problemi
+
 - ❌ Codice duplicato
 - ❌ Impossibile scrivere funzioni generiche
 - ❌ Difficile manutenzione
@@ -82,7 +84,8 @@ impl HasStats for Pokemon {
 }
 ```
 
-### Vantaggi:
+### Vantaggi
+
 - ✅ Comportamento definito una sola volta
 - ✅ Funzioni generiche possibili
 - ✅ Implementazione di default riutilizzabile

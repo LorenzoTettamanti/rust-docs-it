@@ -34,6 +34,7 @@ Imparare Rust attraverso esempi reali ti permette di:
 **Repository**: [github.com/AndreaBozzo/rustmon](https://github.com/AndreaBozzo/rustmon)
 
 Un simulatore di battaglie Pokemon scritto in Rust che esplora concetti fondamentali come:
+
 - Ownership e borrowing nella gestione dei Pokemon
 - Enums e pattern matching per tipi e mosse
 - Traits per comportamenti comuni
