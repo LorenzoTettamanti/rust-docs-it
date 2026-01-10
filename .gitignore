@@ -61,3 +61,6 @@ drafts/
 # Lock files (optional - uncomment if you want to track them)
 # poetry.lock
 # Pipfile.lock
+
+node_modules/
+package-lock.json
